@@ -183,7 +183,6 @@
     var currentPath = {};
 
     drawPath.addEventListener('mousedown', function() {
-      console.log("editting has started");
       currentPath = new L.Polyline([]).addTo(map);
       map.dragging.disable();
       map.on('mousedown', function drawPoly() {
@@ -201,14 +200,14 @@
       map.on('mousedown', addLatLngToPolyLine);
     })
 
-    drawPolygonButton.addEventListener('mousedown', function(){
-      console.log('polygon drawing enabled');
+    drawPolygonButton.addEventListener('mousedown', function(e){
+      e.stopPropagation();
+      map.dragging.disable();
       currentPolygon = new L.polygon([]).addTo(map);
       map.on('mousedown', addLatLngToPolygon); //Listen for clicks on map.
-    });
+    }, true);
 
     stopDraw.addEventListener('mousedown', function(){
-      console.log("disconnecting drawing events");
       map.off('mousedown', addLatLngToPolyLine);
       map.off('mousedown', addLatLngToPolygon); //Stop listening for clicks on map.
       map.off('mousedown'); //Stop listenting for clicks
