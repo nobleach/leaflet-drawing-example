@@ -14,15 +14,25 @@
       height: 100%;
       margin: 0;
     }
+    div#button-holder {
+      position: absolute;
+      width:100%;
+      top:0px;
+      z-index: 400;
+    }
   </style>
 </head>
 <body>
-  <button id="drawPolygon">Draw Polygon</button>
-  <button id="drawPolyLine">Draw PolyLine</button>
-  <button id="drawPath">Draw Freehand</button>
-  <button id="stopDraw">Stop Drawing</button>
-  <button id="getData">Get Coordinate Array</button>
-  <div id="map"></div>
+
+  <div id="map">
+    <div id="button-holder">
+      <button id="drawPolygon">Draw Polygon</button>
+      <button id="drawPolyLine">Draw PolyLine</button>
+      <button id="drawPath">Draw Freehand</button>
+      <button id="stopDraw">Stop Drawing</button>
+      <button id="getData">Get Coordinate Array</button>
+    </div>
+  </div>
 
   <script src="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.js"></script>
   <script src="js/vendor/esri-leaflet.js"></script>
@@ -126,42 +136,42 @@
     // });
 
 
-    // function touchHandler(event)
-    // {
-    //   var touches = event.changedTouches,
-    //     first = touches[0],
-    //     type = "";
+    function touchHandler(event)
+    {
+      var touches = event.changedTouches,
+        first = touches[0],
+        type = "";
 
-    //   switch(event.type)
-    //   {
-    //    case "touchstart": type = "mousedown"; break;
-    //    case "touchmove":  type = "mousemove"; break;
-    //    case "touchend":   type = "mouseup"; break;
-    //    default: return;
-    //   }
+      switch(event.type)
+      {
+       case "touchstart": type = "mousedown"; break;
+       case "touchmove":  type = "mousemove"; break;
+       case "touchend":   type = "mouseup"; break;
+       default: return;
+      }
 
-    //   //initMouseEvent(type, canBubble, cancelable, view, clickCount,
-    //   //           screenX, screenY, clientX, clientY, ctrlKey,
-    //   //           altKey, shiftKey, metaKey, button, relatedTarget);
+      //initMouseEvent(type, canBubble, cancelable, view, clickCount,
+      //           screenX, screenY, clientX, clientY, ctrlKey,
+      //           altKey, shiftKey, metaKey, button, relatedTarget);
 
-    //   var simulatedEvent = document.createEvent("MouseEvent");
-    //   simulatedEvent.initMouseEvent(type, true, true, window, 1,
-    //                         first.screenX, first.screenY,
-    //                         first.clientX, first.clientY, false,
-    //                         false, false, false, 0/*left*/, null);
+      var simulatedEvent = document.createEvent("MouseEvent");
+      simulatedEvent.initMouseEvent(type, true, true, window, 1,
+                            first.screenX, first.screenY,
+                            first.clientX, first.clientY, false,
+                            false, false, false, 0/*left*/, null);
 
-    //   first.target.dispatchEvent(simulatedEvent);
-    //   event.preventDefault();
-    // }
+      first.target.dispatchEvent(simulatedEvent);
+      event.preventDefault();
+    }
 
-    // function init()
-    // {
-    //   document.addEventListener("touchstart", touchHandler, true);
-    //   document.addEventListener("touchmove", touchHandler, true);
-    //   document.addEventListener("touchend", touchHandler, true);
-    //   document.addEventListener("touchcancel", touchHandler, true);
-    // }
-    // init();
+    function init()
+    {
+      document.addEventListener("touchstart", touchHandler, true);
+      document.addEventListener("touchmove", touchHandler, true);
+      document.addEventListener("touchend", touchHandler, true);
+      document.addEventListener("touchcancel", touchHandler, true);
+    }
+    init();
 
     var drawPolygonButton = document.getElementById('drawPolygon');
     var stopDrawButton = document.getElementById('stopDraw');
@@ -173,9 +183,11 @@
     var currentPath = {};
 
     drawPath.addEventListener('mousedown', function() {
+      console.log("editting has started");
       currentPath = new L.Polyline([]).addTo(map);
       map.dragging.disable();
       map.on('mousedown', function drawPoly() {
+        console.log("mousedown just happened.");
         map.on('mousemove', addLatLngToPath);
         map.on('dblClick', function() {
           map.off('mousedown', drawPoly);
@@ -216,12 +228,13 @@
       currentPolyLine.addLatLng(e.latlng);
     }
     function addLatLngToPath(e) {
+      console.log("dragging and adding points");
       currentPath.addLatLng(e.latlng);
     }
     function simplifyLatLngs(latlngs){
       var x = []; //blank array
       for(var i=0;i<latlngs.length;i++){
-              x.push([latlngs[i].lat,latlngs[i].lng]);
+        x.push([latlngs[i].lat,latlngs[i].lng]);
       }
       return x;
     }
