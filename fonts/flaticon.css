@@ -1,0 +1,121 @@
+@font-face {
+	font-family: "Flaticon";
+	src: url("flaticon.eot");
+	src: url("flaticon.eot#iefix") format("embedded-opentype"),
+	url("flaticon.woff") format("woff"),
+	url("flaticon.ttf") format("truetype"),
+	url("flaticon.svg") format("svg");
+	font-weight: normal;
+	font-style: normal;
+}
+[class^="flaticon-"]:before, [class*=" flaticon-"]:before,
+[class^="flaticon-"]:after, [class*=" flaticon-"]:after {   
+	font-family: Flaticon;
+        font-size: 20px;
+font-style: normal;
+margin-left: 20px;
+}.flaticon-adding:before {
+	content: "\e000";
+}
+.flaticon-black11:before {
+	content: "\e001";
+}
+.flaticon-camera44:before {
+	content: "\e002";
+}
+.flaticon-cancel6:before {
+	content: "\e003";
+}
+.flaticon-circle17:before {
+	content: "\e004";
+}
+.flaticon-circle7:before {
+	content: "\e005";
+}
+.flaticon-close3:before {
+	content: "\e006";
+}
+.flaticon-constellation:before {
+	content: "\e007";
+}
+.flaticon-crayon:before {
+	content: "\e008";
+}
+.flaticon-curve11:before {
+	content: "\e009";
+}
+.flaticon-curve9:before {
+	content: "\e00a";
+}
+.flaticon-earth15:before {
+	content: "\e00b";
+}
+.flaticon-folder5:before {
+	content: "\e00c";
+}
+.flaticon-geolocation:before {
+	content: "\e00d";
+}
+.flaticon-layers2:before {
+	content: "\e00e";
+}
+.flaticon-layers3:before {
+	content: "\e00f";
+}
+.flaticon-layout8:before {
+	content: "\e010";
+}
+.flaticon-lug:before {
+	content: "\e011";
+}
+.flaticon-machine2:before {
+	content: "\e012";
+}
+.flaticon-menu:before {
+	content: "\e013";
+}
+.flaticon-menu1:before {
+	content: "\e014";
+}
+.flaticon-menu10:before {
+	content: "\e015";
+}
+.flaticon-menu7:before {
+	content: "\e016";
+}
+.flaticon-move11:before {
+	content: "\e017";
+}
+.flaticon-pin4:before {
+	content: "\e018";
+}
+.flaticon-planet2:before {
+	content: "\e019";
+}
+.flaticon-redo3:before {
+	content: "\e01a";
+}
+.flaticon-right9:before {
+	content: "\e01b";
+}
+.flaticon-save1:before {
+	content: "\e01c";
+}
+.flaticon-save8:before {
+	content: "\e01d";
+}
+.flaticon-small35:before {
+	content: "\e01e";
+}
+.flaticon-undo5:before {
+	content: "\e01f";
+}
+.flaticon-vector4:before {
+	content: "\e020";
+}
+.flaticon-writing9:before {
+	content: "\e021";
+}
+.flaticon-x5:before {
+	content: "\e022";
+}
