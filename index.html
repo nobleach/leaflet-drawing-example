@@ -36,104 +36,12 @@
 
   <script src="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.js"></script>
   <script src="js/vendor/esri-leaflet.js"></script>
-  <script src="js/vendor/leaflet-draw.js"></script>
   <script>
     var map = L.map('map').setView([40.606389, -112.009011], 15);
 
     // Add ArcGIS Online Basemap
     L.esri.basemapLayer("Streets").addTo(map);
 
-    var addedLayer;
-    var featureLayers = [];
-
-    var waterLineBreak = "https://services1.arcgis.com/BqQ60RORKMjmx3jf/arcgis/rest/services/Water_Line_Break/FeatureServer/0"
-    featureLayers.push(waterLineBreak);
-    var sfCable = "https://services1.arcgis.com/BqQ60RORKMjmx3jf/arcgis/rest/services/Spanish_Fork_Water_Sewer_Storm_Cable/FeatureServer/3";
-    featureLayers.push(sfCable);
-    var sfStorm = "https://services1.arcgis.com/BqQ60RORKMjmx3jf/arcgis/rest/services/Spanish_Fork_Water_Sewer_Storm_Cable/FeatureServer/2";
-    featureLayers.push(sfStorm);
-    var sfSewer = "https://services1.arcgis.com/BqQ60RORKMjmx3jf/arcgis/rest/services/Spanish_Fork_Water_Sewer_Storm_Cable/FeatureServer/1";
-    featureLayers.push(sfSewer);
-    var sfWater = "https://services1.arcgis.com/BqQ60RORKMjmx3jf/arcgis/rest/services/Spanish_Fork_Water_Sewer_Storm_Cable/FeatureServer/0";
-    featureLayers.push(sfWater);
-    var sketch = "https://services1.arcgis.com/BqQ60RORKMjmx3jf/arcgis/rest/services/Sketch/FeatureServer/0";
-    featureLayers.push(sketch);
-
-    addFeatureLayers(featureLayers);
-
-    function addFeatureLayers(featureLayersArray) {
-      for (var i = featureLayersArray.length - 1; i >= 0; i--) {
-        var featureServiceUrl =featureLayersArray[i]
-        addedLayer = L.esri.featureLayer(featureServiceUrl, {
-          onEachFeature: createPopup
-        }).addTo(map);
-      };
-
-
-    }
-
-    function createPopup(geojson,layer) {
-      // Show all data
-      if (geojson.properties) {
-        var popupText =  "<div style='overflow-y:scroll; max-height:200px;'>";
-        for (prop in geojson.properties) {
-          var val = geojson.properties[prop];
-          if (val) {
-            popupText += "<b>" + prop + "</b>: " + val + "<br>";
-          }
-        }
-        popupText += "</div>";
-        layer.bindPopup(popupText);
-      }
-    }
-
-    function removeFeatureLayer() {
-
-    }
-
-    // var drawnItems = new L.FeatureGroup();
-    // map.addLayer(drawnItems);
-
-    // var drawControl = new L.Control.Draw({
-    //   draw: {
-    //     position: 'topleft',
-    //     polygon: {
-    //       title: 'Draw a polygon!',
-    //       allowIntersection: false,
-    //       drawError: {
-    //         color: '#b00b00',
-    //         timeout: 1000
-    //       },
-    //       shapeOptions: {
-    //         color: '#bada55'
-    //       },
-    //       showArea: true
-    //     },
-    //     polyline: {
-    //       metric: false
-    //     },
-    //     circle: {
-    //       shapeOptions: {
-    //         color: '#662d91'
-    //       }
-    //     }
-    //   },
-    //   edit: {
-    //     featureGroup: drawnItems
-    //   }
-    // });
-    // map.addControl(drawControl);
-
-    // map.on('draw:created', function (e) {
-    //   var type = e.layerType,
-    //     layer = e.layer;
-
-    //   if (type === 'marker') {
-    //     layer.bindPopup('A popup!');
-    //   }
-
-    //   drawnItems.addLayer(layer);
-    // });
 
 
     function touchHandler(event)
